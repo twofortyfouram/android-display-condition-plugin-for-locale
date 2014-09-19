@@ -15,7 +15,6 @@
 
 package com.twofortyfouram.locale.example.condition.display.test;
 
-import com.twofortyfouram.annotation.NonNull;
 import com.twofortyfouram.annotation.Slow;
 import com.twofortyfouram.annotation.Slow.Speed;
 import com.twofortyfouram.annotation.VisibleForTesting;
@@ -30,6 +29,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.content.Context;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.XmlResourceParser;
+import android.support.annotation.NonNull;
 
 import java.io.IOException;
 

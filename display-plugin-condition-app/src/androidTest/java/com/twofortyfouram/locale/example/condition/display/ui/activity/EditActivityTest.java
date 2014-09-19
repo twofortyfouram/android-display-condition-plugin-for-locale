@@ -15,7 +15,6 @@
 
 package com.twofortyfouram.locale.example.condition.display.ui.activity;
 
-import com.twofortyfouram.annotation.NonNull;
 import com.twofortyfouram.assertion.Assertions;
 import com.twofortyfouram.spackle.util.ResourceUtil;
 import com.twofortyfouram.locale.example.condition.display.R;
