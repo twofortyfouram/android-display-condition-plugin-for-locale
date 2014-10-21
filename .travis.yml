@@ -3,15 +3,14 @@ jdk: oraclejdk7
 
 android:
   components:
-    - platform-tools
-    - tools
-    - build-tools-20.0.0
+    - platform-tools-21.0.0
+    - tools-23.0.5
+    - build-tools-21.1.0
     
     - android-8
     - android-10
     - android-19
-    - extra-google-m2repository
-    - extra-android-m2repository
+    - android-21
   licenses:
     - 'android-sdk-license-.*'
 
@@ -23,11 +22,10 @@ env:
 
 # Emulator Management: Create, Start and Wait
 before_script:
-  - echo no | android create avd --force -n test --target $ANDROID_TARGET --abi $ANDROID_ABI
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+    - echo no | android create avd --force -n test --target $ANDROID_TARGET --abi $ANDROID_ABI
+    - emulator -avd test -no-skin -no-audio -no-window &
+    - android-wait-for-emulator
+    - adb shell input keyevent 82 &
 
 script:
-    # Without TERM=dumb, we get mangled output in the Travis console
-    - TERM=dumb ./gradlew assemble connectedCheck
+  - TERM=dumb ./gradlew assemble connectedCheck
