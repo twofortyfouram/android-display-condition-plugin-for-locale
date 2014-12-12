@@ -37,7 +37,7 @@ android {
         debug {
             testCoverageEnabled Boolean.parseBoolean(IS_COVERAGE_ENABLED)
             //applicationIdSuffix ".debug"
-            zipAlign true
+            zipAlignEnabled true
         }
         release {
             // Disable ProGuard until this bug is fixed https://code.google.com/p/android/issues/detail?id=69625
