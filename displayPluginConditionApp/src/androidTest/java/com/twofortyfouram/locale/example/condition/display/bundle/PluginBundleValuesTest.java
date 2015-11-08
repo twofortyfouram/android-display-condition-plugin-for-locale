@@ -14,12 +14,11 @@
  */
 package com.twofortyfouram.locale.example.condition.display.bundle;
 
-import com.twofortyfouram.spackle.util.AppBuildInfo;
-import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
-
 import android.os.Bundle;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
+
+import com.twofortyfouram.spackle.AppBuildInfo;
 
 /**
  * Tests {@link PluginBundleValues}.

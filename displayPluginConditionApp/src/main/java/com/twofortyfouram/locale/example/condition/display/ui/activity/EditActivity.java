@@ -15,17 +15,17 @@
 
 package com.twofortyfouram.locale.example.condition.display.ui.activity;
 
-import com.twofortyfouram.locale.example.condition.display.R;
-import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
-import com.twofortyfouram.locale.sdk.client.ui.activity.AbstractLocalePluginActivity;
-import com.twofortyfouram.spackle.util.ResourceUtil;
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.twofortyfouram.locale.example.condition.display.R;
+import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
+import com.twofortyfouram.locale.sdk.client.ui.activity.AbstractLocalePluginActivity;
+import com.twofortyfouram.spackle.ResourceUtil;
 
 public final class EditActivity extends AbstractLocalePluginActivity {
 

@@ -3,7 +3,7 @@
 # Overview
 [Locale](https://play.google.com/store/apps/details?id=com.twofortyfouram.locale) allows developers to create plug-in conditions and settings.  The android-display-condition-plugin-for-locale implements an example plug-in condition.  This project is the final layer of the [Locale Developer Platform documentation](http://www.twofortyfouram.com/developer).
 
-Although there are multiple ways to approach building a plug-in, we recommend forking this project as the starting point.
+Although there are multiple ways to approach building a plug-in condition, we recommend forking this project as the starting point.
 
 
 # Compatibility

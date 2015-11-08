@@ -15,10 +15,6 @@
 
 package com.twofortyfouram.locale.example.condition.display.receiver;
 
-import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
-import com.twofortyfouram.spackle.util.AndroidSdkVersion;
-import com.twofortyfouram.spackle.util.ThreadUtil;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,6 +29,10 @@ import android.support.annotation.Nullable;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
 import android.text.format.DateUtils;
+
+import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
+import com.twofortyfouram.spackle.AndroidSdkVersion;
+import com.twofortyfouram.spackle.ThreadUtil;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

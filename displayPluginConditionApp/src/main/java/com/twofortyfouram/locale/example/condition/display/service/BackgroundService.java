@@ -16,12 +16,6 @@
 package com.twofortyfouram.locale.example.condition.display.service;
 
 
-import com.twofortyfouram.assertion.Assertions;
-import com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity;
-import com.twofortyfouram.log.Lumberjack;
-import com.twofortyfouram.spackle.power.PartialWakeLockForService;
-import com.twofortyfouram.spackle.util.bundle.BundleScrubber;
-
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -31,6 +25,13 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity;
+import com.twofortyfouram.log.Lumberjack;
+import com.twofortyfouram.spackle.bundle.BundleScrubber;
+import com.twofortyfouram.spackle.power.PartialWakeLockForService;
+
+import static com.twofortyfouram.assertion.Assertions.assertNotNull;
 
 
 /**
@@ -96,7 +97,7 @@ public final class BackgroundService extends Service {
      * @param isScreenOn True if the screen is on. False if the screen is off.
      */
     public static void startService(@NonNull final Context context, final boolean isScreenOn) {
-        Assertions.assertNotNull(context, "context"); //$NON-NLS-1$
+        assertNotNull(context, "context"); //$NON-NLS-1$
 
         final Intent intent = new Intent(context, BackgroundService.class);
         intent.putExtra(EXTRA_BOOLEAN_WAS_SCREEN_ON, isScreenOn);
@@ -192,7 +193,10 @@ public final class BackgroundService extends Service {
 
         @Override
         public void onReceive(final Context context, final Intent intent) {
-            BundleScrubber.scrub(intent);
+            if (BundleScrubber.scrub(intent)) {
+                return;
+            }
+            
             Lumberjack.v("Received %s", intent); //$NON-NLS-1$
 
             /*

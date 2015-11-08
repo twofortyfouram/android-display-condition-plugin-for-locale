@@ -16,17 +16,17 @@
 package com.twofortyfouram.locale.example.condition.display.bundle;
 
 
-import com.twofortyfouram.spackle.util.AppBuildInfo;
-import com.twofortyfouram.assertion.Assertions;
-import com.twofortyfouram.log.Lumberjack;
-import com.twofortyfouram.assertion.BundleAssertions;
-
-import net.jcip.annotations.ThreadSafe;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import com.twofortyfouram.assertion.Assertions;
+import com.twofortyfouram.assertion.BundleAssertions;
+import com.twofortyfouram.log.Lumberjack;
+import com.twofortyfouram.spackle.AppBuildInfo;
+
+import net.jcip.annotations.ThreadSafe;
 
 /**
  * Class for managing the {@link com.twofortyfouram.locale.api.Intent#EXTRA_BUNDLE} for this

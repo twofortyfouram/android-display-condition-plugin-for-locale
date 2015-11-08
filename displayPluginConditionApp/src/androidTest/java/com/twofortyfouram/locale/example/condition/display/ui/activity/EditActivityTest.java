@@ -15,14 +15,6 @@
 
 package com.twofortyfouram.locale.example.condition.display.ui.activity;
 
-import com.twofortyfouram.assertion.Assertions;
-import com.twofortyfouram.spackle.util.ResourceUtil;
-import com.twofortyfouram.locale.example.condition.display.R;
-import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
-import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
-import com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity;
-import com.twofortyfouram.test.ui.activity.ActivityTestUtil;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Instrumentation;
@@ -39,12 +31,16 @@ import android.text.TextUtils;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.lang.reflect.Field;
+import com.twofortyfouram.locale.example.condition.display.R;
+import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
+import com.twofortyfouram.spackle.ResourceUtil;
+import com.twofortyfouram.test.ui.activity.ActivityTestUtil;
 
 /**
  * Tests the {@link EditActivity}.
  */
 public final class EditActivityTest extends ActivityInstrumentationTestCase2<EditActivity> {
+
     /**
      * Context of the target application. This is initialized in
      * {@link #setUp()}.
@@ -94,29 +90,44 @@ public final class EditActivityTest extends ActivityInstrumentationTestCase2<Edi
             final Bundle bundle = PluginBundleValues.generateBundle(mTargetContext, false);
 
             setActivityIntent(new Intent(com.twofortyfouram.locale.api.Intent.ACTION_EDIT_CONDITION)
-                    .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BREADCRUMB,
-                            "Locale > Edit Situation").putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE, bundle)); //$NON-NLS-1$
+                            .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BREADCRUMB,
+                                    "Locale > Edit Situation") //$NON-NLS-1$
+                            .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE,
+                                    bundle)
+                            .putExtra(
+                                    com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BLURB,
+                                    "Off"));//$NON-NLS-1$
         } else if ("testEditOldConditionOn".equals(getName())) { //$NON-NLS-1$
             final Bundle bundle = PluginBundleValues.generateBundle(mTargetContext, true);
 
             setActivityIntent(new Intent(com.twofortyfouram.locale.api.Intent.ACTION_EDIT_CONDITION)
                     .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BREADCRUMB,
-                            "Locale > Edit Situation").putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE, bundle)); //$NON-NLS-1$
+                            "Locale > Edit Situation")//$NON-NLS-1$
+                    .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE,
+                            bundle)
+                    .putExtra(
+                            com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BLURB,
+                            "On"));//$NON-NLS-1$
         } else if ("testMissingBreadcrumb".equals(getName())) { //$NON-NLS-1$
-            setActivityIntent(new Intent(com.twofortyfouram.locale.api.Intent.ACTION_EDIT_CONDITION));
+            setActivityIntent(
+                    new Intent(com.twofortyfouram.locale.api.Intent.ACTION_EDIT_CONDITION));
         } else if ("testBadBundleMissingExtra".equals(getName())) { //$NON-NLS-1$
             final Bundle bundle = new Bundle();
 
             setActivityIntent(new Intent(com.twofortyfouram.locale.api.Intent.ACTION_EDIT_CONDITION)
                     .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BREADCRUMB,
-                            "Locale > Edit Situation").putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE, bundle)); //$NON-NLS-1$
+                            "Locale > Edit Situation")
+                    .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE,
+                            bundle)); //$NON-NLS-1$
         } else if ("testBadBundleWrongType".equals(getName())) { //$NON-NLS-1$
             final Bundle bundle = new Bundle();
             bundle.putString(PluginBundleValues.BUNDLE_EXTRA_BOOLEAN_STATE, "test"); //$NON-NLS-1$
 
             setActivityIntent(new Intent(com.twofortyfouram.locale.api.Intent.ACTION_EDIT_CONDITION)
                     .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BREADCRUMB,
-                            "Locale > Edit Situation").putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE, bundle)); //$NON-NLS-1$
+                            "Locale > Edit Situation")
+                    .putExtra(com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE,
+                            bundle)); //$NON-NLS-1$
         }
     }
 
@@ -140,7 +151,8 @@ public final class EditActivityTest extends ActivityInstrumentationTestCase2<Edi
          */
 
         assertEquals(
-                "com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity", EditActivity.class.getName()); //$NON-NLS-1$
+                "com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity",
+                EditActivity.class.getName()); //$NON-NLS-1$
     }
 
     /**
@@ -199,7 +211,8 @@ public final class EditActivityTest extends ActivityInstrumentationTestCase2<Edi
         assertSelectedPositionAutoSync(R.string.list_off);
 
         getActivity().finish();
-        assertEquals(Activity.RESULT_CANCELED, ActivityTestUtil.getActivityResultCode(getActivity()));
+        assertEquals(Activity.RESULT_CANCELED,
+                ActivityTestUtil.getActivityResultCode(getActivity()));
     }
 
     @MediumTest
@@ -218,7 +231,8 @@ public final class EditActivityTest extends ActivityInstrumentationTestCase2<Edi
         assertSelectedPositionAutoSync(R.string.list_on);
 
         getActivity().finish();
-        assertEquals(Activity.RESULT_CANCELED, ActivityTestUtil.getActivityResultCode(getActivity()));
+        assertEquals(Activity.RESULT_CANCELED,
+                ActivityTestUtil.getActivityResultCode(getActivity()));
     }
 
     @MediumTest
@@ -261,7 +275,7 @@ public final class EditActivityTest extends ActivityInstrumentationTestCase2<Edi
      * display state.
      *
      * @param isDisplayOn True if the display is on, false if the display is
-     *        off.
+     *                    off.
      */
     private void assertActivityResultAutoSync(final boolean isDisplayOn) throws Throwable {
         final Activity activity = getActivity();
@@ -282,7 +296,10 @@ public final class EditActivityTest extends ActivityInstrumentationTestCase2<Edi
                 assertNotNull(extras);
                 assertEquals(
                         String.format(
-                                "Extras should only contain %s and %s but actually contain %s", com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE, com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BLURB, extras.keySet()), 2, extras.keySet() //$NON-NLS-1$
+                                "Extras should only contain %s and %s but actually contain %s",
+                                com.twofortyfouram.locale.api.Intent.EXTRA_BUNDLE,
+                                com.twofortyfouram.locale.api.Intent.EXTRA_STRING_BLURB,
+                                extras.keySet()), 2, extras.keySet() //$NON-NLS-1$
                                 .size());
 
                 assertFalse(TextUtils.isEmpty(extras
@@ -309,7 +326,7 @@ public final class EditActivityTest extends ActivityInstrumentationTestCase2<Edi
      * Asserts provided item is selected in the list.
      *
      * @param position one of {@link R.string#list_off},
-     *        {@link R.string#list_on}, or {@link AdapterView#INVALID_POSITION}.
+     *                 {@link R.string#list_on}, or {@link AdapterView#INVALID_POSITION}.
      */
     private void assertSelectedPositionAutoSync(final int position) throws Throwable {
         final int actualPosition;
@@ -337,7 +354,7 @@ public final class EditActivityTest extends ActivityInstrumentationTestCase2<Edi
      * Sets the given position in the list.
      *
      * @param position one of {@link R.string#list_off},
-     *        {@link R.string#list_on}, or {@link AdapterView#INVALID_POSITION}.
+     *                 {@link R.string#list_on}, or {@link AdapterView#INVALID_POSITION}.
      */
     private void setSelectedPositionAutoSync(final int position) throws Throwable {
         final int actualPosition;

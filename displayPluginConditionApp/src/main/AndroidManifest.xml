@@ -9,6 +9,8 @@
           package="com.twofortyfouram.locale.example.condition.display"
           android:installLocation="internalOnly">
 
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
     <!-- This allows the plug-in to appear on non-touchscreen devices like Google TV.
     Be sure to test that the app works without a touchscreen. -->
     <uses-feature
@@ -22,7 +24,8 @@
             android:largeScreens="true"
             android:normalScreens="true"
             android:smallScreens="true"
-            android:xlargeScreens="true"/>
+            android:xlargeScreens="true"
+            tools:ignore="UnusedAttribute"/>
 
     <!-- When hardware acceleration is enabled, the RAM memory usage of the app is
          significantly increased as soon as any UI is displayed. To reduce the memory
@@ -33,9 +36,11 @@
     <application
             android:name="com.twofortyfouram.locale.example.condition.display.PluginApplication"
             android:allowBackup="true"
+            android:fullBackupContent="true"
             android:hardwareAccelerated="true"
             android:icon="@drawable/ic_launcher"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity
                 android:name="com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity"
@@ -43,7 +48,8 @@
                 android:label="@string/plugin_name"
                 android:theme="@style/Theme.App.Dark"
                 android:uiOptions="splitActionBarWhenNarrow"
-                android:windowSoftInputMode="adjustResize">
+                android:windowSoftInputMode="adjustResize"
+                tools:ignore="UnusedAttribute">
         </activity>
         <!--
              This is the "edit" Activity. Note that the host will reject plug-in
