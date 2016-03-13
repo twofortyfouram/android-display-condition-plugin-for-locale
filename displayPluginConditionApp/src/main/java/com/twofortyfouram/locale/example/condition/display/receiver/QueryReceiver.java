@@ -15,20 +15,20 @@
 
 package com.twofortyfouram.locale.example.condition.display.receiver;
 
-import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
-import com.twofortyfouram.locale.example.condition.display.service.BackgroundService;
-import com.twofortyfouram.locale.sdk.client.receiver.AbstractPluginConditionReceiver;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.support.annotation.NonNull;
 
+import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
+import com.twofortyfouram.locale.example.condition.display.service.BackgroundService;
+import com.twofortyfouram.locale.sdk.client.receiver.AbstractPluginConditionReceiver;
+
 
 public final class QueryReceiver extends AbstractPluginConditionReceiver {
 
     @Override
-    protected int getPluginConditionState(@NonNull final Context context,
+    protected int getPluginConditionResult(@NonNull final Context context,
             @NonNull final Bundle bundle) {
         int result = com.twofortyfouram.locale.api.Intent.RESULT_CONDITION_UNKNOWN;
 

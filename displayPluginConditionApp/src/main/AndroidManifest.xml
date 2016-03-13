@@ -46,7 +46,7 @@
                 android:name="com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity"
                 android:exported="false"
                 android:label="@string/plugin_name"
-                android:theme="@style/Theme.App.Dark"
+                android:theme="@style/Theme.AppCompat"
                 android:uiOptions="splitActionBarWhenNarrow"
                 android:windowSoftInputMode="adjustResize"
                 tools:ignore="UnusedAttribute">

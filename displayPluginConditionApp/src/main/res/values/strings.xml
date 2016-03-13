@@ -20,5 +20,6 @@
     <string name="list_off">Off</string>
     <string name="blurb_on">On</string>
     <string name="blurb_off">Off</string>
+    <string name="menu_discard_changes">Discard changes</string>
 
 </resources>

@@ -15,23 +15,31 @@
 
 package com.twofortyfouram.locale.example.condition.display.ui.activity;
 
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.twofortyfouram.locale.example.condition.display.R;
 import com.twofortyfouram.locale.example.condition.display.bundle.PluginBundleValues;
-import com.twofortyfouram.locale.sdk.client.ui.activity.AbstractLocalePluginActivity;
+import com.twofortyfouram.locale.sdk.client.ui.activity.AbstractAppCompatPluginActivity;
+import com.twofortyfouram.log.Lumberjack;
 import com.twofortyfouram.spackle.ResourceUtil;
 
-public final class EditActivity extends AbstractLocalePluginActivity {
+import net.jcip.annotations.NotThreadSafe;
+
+@NotThreadSafe
+public final class EditActivity extends AbstractAppCompatPluginActivity {
 
     /**
      * ListView shown in the Activity.
      */
+    @Nullable
     private ListView mList = null;
 
     @Override
@@ -45,6 +53,27 @@ public final class EditActivity extends AbstractLocalePluginActivity {
                 android.R.layout.simple_list_item_single_choice, android.R.id.text1, getResources()
                 .getStringArray(R.array.display_states)
         ));
+
+        /*
+         * To help the user keep context, the title shows the host's name and the subtitle
+         * shows the plug-in's name.
+         */
+        CharSequence callingApplicationLabel = null;
+        try {
+            callingApplicationLabel =
+                    getPackageManager().getApplicationLabel(
+                            getPackageManager().getApplicationInfo(getCallingPackage(),
+                                    0));
+        } catch (final PackageManager.NameNotFoundException e) {
+            Lumberjack.e("Calling package couldn't be found%s", e); //$NON-NLS-1$
+        }
+        if (null != callingApplicationLabel) {
+            setTitle(callingApplicationLabel);
+        }
+
+        getSupportActionBar().setSubtitle(R.string.plugin_name);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
@@ -97,5 +126,28 @@ public final class EditActivity extends AbstractLocalePluginActivity {
         }
 
         return getString(R.string.blurb_off);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(final Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(final MenuItem item) {
+        if (android.R.id.home == item.getItemId()) {
+            finish();
+        }
+        else if (R.id.menu_discard_changes == item.getItemId()) {
+            // Signal to AbstractAppCompatPluginActivity that the user canceled.
+            mIsCancelled = true;
+            finish();
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
