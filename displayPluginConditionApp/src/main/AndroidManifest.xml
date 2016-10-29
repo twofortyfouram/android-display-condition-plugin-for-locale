@@ -1,31 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
      Because plug-ins interact with the host in the background, plug-ins MUST be installed to
      internal memory. This is consistent with Google's app install location guidelines:
      <http://developer.android.com/guide/appendix/install-location.html#Should>.
 -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.twofortyfouram.locale.example.condition.display"
-          android:installLocation="internalOnly">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.twofortyfouram.locale.example.condition.display"
+    android:installLocation="internalOnly">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <!-- This allows the plug-in to appear on non-touchscreen devices like Google TV.
     Be sure to test that the app works without a touchscreen. -->
     <uses-feature
-            android:name="android.hardware.touchscreen"
-            android:required="false"/>
+        android:name="android.hardware.touchscreen"
+        android:required="false" />
 
     <!-- Although many of these default to true, some users with modified ROMs have
          trouble seeing apps unless these attributes are explicitly set. -->
     <supports-screens
-            android:anyDensity="true"
-            android:largeScreens="true"
-            android:normalScreens="true"
-            android:smallScreens="true"
-            android:xlargeScreens="true"
-            tools:ignore="UnusedAttribute"/>
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true"
+        tools:ignore="UnusedAttribute" />
 
     <!-- When hardware acceleration is enabled, the RAM memory usage of the app is
          significantly increased as soon as any UI is displayed. To reduce the memory
@@ -34,23 +33,22 @@
          applicable Service) should be put into a different process. This example plug-in
          creates two processes. -->
     <application
-            android:name="com.twofortyfouram.locale.example.condition.display.PluginApplication"
-            android:allowBackup="true"
-            android:fullBackupContent="true"
-            android:hardwareAccelerated="true"
-            android:icon="@drawable/ic_launcher"
-            android:label="@string/app_name"
-            tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+        android:name="com.twofortyfouram.locale.example.condition.display.PluginApplication"
+        android:allowBackup="true"
+        android:fullBackupContent="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
 
         <activity
-                android:name="com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity"
-                android:exported="false"
-                android:label="@string/plugin_name"
-                android:theme="@style/Theme.AppCompat"
-                android:uiOptions="splitActionBarWhenNarrow"
-                android:windowSoftInputMode="adjustResize"
-                tools:ignore="UnusedAttribute">
-        </activity>
+            android:name="com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity"
+            android:exported="false"
+            android:label="@string/plugin_name"
+            android:theme="@style/Theme.AppCompat"
+            android:uiOptions="splitActionBarWhenNarrow"
+            android:windowSoftInputMode="adjustResize"
+            tools:ignore="UnusedAttribute"></activity>
         <!--
              This is the "edit" Activity. Note that the host will reject plug-in
              Activities for the following reasons:
@@ -61,15 +59,15 @@
                  - The Activity requires permissions not available to the host
         -->
         <activity-alias
-                android:name=".ui.activity.PluginActivity"
-                android:exported="true"
-                android:icon="@drawable/ic_plugin"
-                android:label="@string/plugin_name"
-                android:targetActivity="com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity"
-                tools:ignore="ExportedActivity">
+            android:name=".ui.activity.PluginActivity"
+            android:exported="true"
+            android:icon="@drawable/ic_plugin"
+            android:label="@string/plugin_name"
+            android:targetActivity="com.twofortyfouram.locale.example.condition.display.ui.activity.EditActivity"
+            tools:ignore="ExportedActivity">
             <!-- this Intent filter allows the plug-in to be discovered by the host. -->
             <intent-filter>
-                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_CONDITION"/>
+                <action android:name="com.twofortyfouram.locale.intent.action.EDIT_CONDITION" />
             </intent-filter>
         </activity-alias>
 
@@ -79,13 +77,13 @@
              open the app directly from the app store.
         -->
         <activity
-                android:name="com.twofortyfouram.locale.sdk.client.ui.activity.InfoActivity"
-                android:exported="true"
-                tools:ignore="ExportedActivity">
+            android:name="com.twofortyfouram.locale.sdk.client.ui.activity.InfoActivity"
+            android:exported="true"
+            tools:ignore="ExportedActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.INFO"/>
+                <category android:name="android.intent.category.INFO" />
             </intent-filter>
         </activity>
 
@@ -98,16 +96,20 @@
                 - There are multiple BroadcastReceivers for com.twofortyfouram.locale.intent.action.QUERY_CONDITION
         -->
         <receiver
-                android:name="com.twofortyfouram.locale.example.condition.display.receiver.QueryReceiver"
-                android:exported="true"
-                android:process=":background"
-                tools:ignore="ExportedReceiver">
+            android:name="com.twofortyfouram.locale.example.condition.display.receiver.QueryReceiver"
+            android:exported="true"
+            android:process=":background"
+            tools:ignore="ExportedReceiver">
 
             <!-- this Intent filter allows the plug-in to discovered by the host. -->
             <intent-filter>
-                <action android:name="com.twofortyfouram.locale.intent.action.QUERY_CONDITION"/>
+                <action android:name="com.twofortyfouram.locale.intent.action.QUERY_CONDITION" />
             </intent-filter>
         </receiver>
+        <service
+            android:name=".service.BackgroundService"
+            android:exported="false"
+            android:process=":background" />
     </application>
 
 </manifest>
