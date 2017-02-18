@@ -1,0 +1,19 @@
+displayPluginConditionApp:
+  type: instrumentation
+  app: displayPluginConditionApp/build/outputs/apk/displayPluginConditionApp-debug.apk
+  test: displayPluginConditionApp/build/outputs/apk/displayPluginConditionApp-debug-androidTest.apk
+  timeout: 10m
+  results-history-name: displayPluginConditionApp
+  include: [devices,supported-versions,coverage-environment-variables]
+
+devices:
+  device-ids: [Nexus4,NexusLowRes]
+
+supported-versions:
+  os-version-ids: [19,25]
+
+coverage-environment-variables:
+  environment-variables:
+    coverage: true
+    coverageFile: "/sdcard/coverage.ec"
+  directories-to-pull: ["/sdcard"]
