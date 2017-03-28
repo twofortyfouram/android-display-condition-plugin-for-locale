@@ -7,7 +7,7 @@ Although there are multiple ways to approach building a plug-in condition, we re
 
 
 # Compatibility
-The application is compatible and optimized for Android API Level 9 and above.
+The application is compatible and optimized for Android API Level 14 and above.
 
 
 ## Forking this Project
