@@ -1,4 +1,5 @@
-[![CircleCI](https://circleci.com/gh/twofortyfouram/android-display-condition-plugin-for-locale.svg?style=svg)](https://circleci.com/gh/twofortyfouram/android-display-condition-plugin-for-locale)
+# Deprecation
+This example is deprecated, as plug-in conditions can no longer be reliably supported on the latest versions of Android due to restrictions on background processes.
 
 # Overview
 [Locale](https://play.google.com/store/apps/details?id=com.twofortyfouram.locale) allows developers to create plug-in conditions and settings.  The android-display-condition-plugin-for-locale implements an example plug-in condition.  This project is the final layer of the [Locale Developer Platform documentation](http://www.twofortyfouram.com/developer).
